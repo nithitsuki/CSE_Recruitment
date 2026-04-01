@@ -21,14 +21,10 @@ This document outlines all the software requirements for the **3 recruitment tas
   - Includes: `ros2`, `colcon`, `rosdep`
 
 #### Simulation Engines (Choose One and make sure to look into both of them Determine according to You which would be best for our usecase of a Rover)
-- **Gazebo** (Gazebo Fortress)
+- **Gazebo** (Gazebo Fortress) (Recommended)
   - https://gazebosim.org/docs/fortress/install/
   - Integrates natively with ROS2
   
-- **CoppeliaSim** (Edu or Pro version)
-  - https://www.coppeliarobotics.com/downloads
-  - ROS2 plugin available: https://github.com/CoppeliaRobotics/simExtROS2
-
 #### Visualization
 - **RViz2** (included with ROS2)
   - Used for viewing robot models, transforms, sensor data
@@ -37,6 +33,9 @@ This document outlines all the software requirements for the **3 recruitment tas
 - **colcon** (ROS2 build tool) — included with ROS2
 - **rosdep** (dependency resolver) — included with ROS2
 - **pip** (Python package manager)
+
+**Make sure to refer the src folder which has the  mini_model_description package containing the meshes and urdf folder with their respective files ,  you can put all your launch scripts in this mini_model_description folder**
+
 
 ### Key ROS2 Packages
 - `ros2_control` — Control framework

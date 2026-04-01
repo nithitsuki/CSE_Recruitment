@@ -148,6 +148,8 @@ Set up and run a basic rover simulation workflow using ROS 2 and Gazebo.
 3. Publish odometry and TF transforms correctly so rover motion is reflected
    consistently in the frame tree.
 
+**Make sure to refer the src folder which has the  mini_model_description package containing the meshes and urdf folder with their respective files ,  you can put all your launch scripts in this mini_model_description folder**
+
 ## Bonus Tasks (Based on the task number assigned to you)
 **Task 1 :** - Build a ROS 2 keyboard teleoperation node for driving the rover in simulation.
 
