@@ -1,0 +1,24 @@
+Use of AI Report - micro-ROS GPS Publisher
+
+Introduction
+I used GitHub Copilot (GPT-5.3-Codex) as an AI programming assistant to support development and debugging for this submission.
+
+What I asked for
+1. Conversion of raw NMEA forwarding code into parsed output using the LwGPS library.
+2. A way to keep normal GPS reading independent from ROS testing.
+
+What the AI implemented
+1. Added dual-mode firmware behavior in src/main.cpp:
+	- Non-ROS mode: prints parsed GPS values to Serial Monitor.
+	- micro-ROS mode: publishes sensor_msgs/NavSatFix on /gps/fix.
+2. Added separate PlatformIO environments in platformio.ini:
+	- teensy41 (normal GPS mode)
+	- teensy41_microros (ROS mode with USE_MICROROS define)
+3. Fixed build blockers and verified successful compilation for both environments.
+
+Validation outcome
+1. pio run -e teensy41 succeeded (normal mode).
+2. pio run -e teensy41_microros succeeded (micro-ROS mode).
+
+Notes
+The AI assistance was used for coding, troubleshooting, and command guidance. Final integration decisions and workflow choices were made by me.

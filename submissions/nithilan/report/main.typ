@@ -1,2 +1,3 @@
 decided to go with Arduino against Zephyr RTOS, as for this specific recruitment task I feel its kinda overkill, and I can use FreeRTOS if needed.
 
+made an environment with just LwGPS to test the GPS module, and another one with micro-ROS publishing GPS data to make sure the micro-ROS works as well, while isolating the two environments to make sure they don't interfere with each other, and to make it easier to debug if needed.
