@@ -1,0 +1,276 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSE Recruitment Log - Nithilan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f5f2e9;
+        --ink: #1f2421;
+        --muted: #586166;
+        --card: #fffdf8;
+        --line: #d7d0c2;
+        --accent: #0f6a7c;
+        --accent-soft: #d7eef3;
+        --ok: #2f7d4f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 90% 10%, #e2f4f8 0, transparent 14%),
+          radial-gradient(circle at 10% 30%, #f0ebe1 0, transparent 30%),
+          var(--bg);
+        font-family: "Space Grotesk", sans-serif;
+        line-height: 1.6;
+      }
+
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: 28px 18px 56px;
+      }
+
+      .hero {
+        border: 1px solid var(--line);
+        background: linear-gradient(140deg, #fffefb, #f6fbfc);
+        border-radius: 18px;
+        padding: 26px;
+        box-shadow: 0 10px 30px rgba(31, 36, 33, 0.07);
+      }
+
+      .tag {
+        display: inline-block;
+        border: 1px solid #c7d9de;
+        background: var(--accent-soft);
+        color: #0e4956;
+        border-radius: 999px;
+        padding: 4px 10px;
+        font-size: 12px;
+        font-family: "IBM Plex Mono", monospace;
+      }
+
+      h1 {
+        margin: 10px 0 8px;
+        font-size: clamp(1.8rem, 4vw, 2.7rem);
+        line-height: 1.2;
+      }
+
+      h2 {
+        margin: 0 0 10px;
+        font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .grid {
+        margin-top: 18px;
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .chip {
+        border: 1px solid var(--line);
+        background: var(--card);
+        border-radius: 12px;
+        padding: 12px;
+        font-size: 14px;
+      }
+
+      .section {
+        margin-top: 18px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--card);
+        padding: 18px;
+      }
+
+      .section p {
+        margin: 8px 0;
+      }
+
+      .mini-title {
+        margin-top: 16px;
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+        color: #22383d;
+        font-family: "IBM Plex Mono", monospace;
+      }
+
+      ul {
+        margin: 8px 0 4px 18px;
+      }
+
+      li {
+        margin-bottom: 6px;
+      }
+
+      .timeline {
+        margin-top: 10px;
+        border-left: 2px solid #c8d6da;
+        padding-left: 16px;
+      }
+
+      .entry {
+        margin-bottom: 18px;
+      }
+
+      .commit {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        color: #34545b;
+        background: #edf5f7;
+        border: 1px solid #d2e3e8;
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 999px;
+      }
+
+      .note {
+        border: 1px dashed #89aab2;
+        background: #f4fbfd;
+        border-radius: 10px;
+        padding: 10px 12px;
+        font-size: 14px;
+      }
+
+      .ok {
+        color: var(--ok);
+        font-weight: 600;
+      }
+
+      .footer {
+        margin-top: 20px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="hero">
+        <h1>How I approached Category 1, and what I am doing in Category 2</h1>
+        <div class="grid">
+          <div class="chip"><strong>Name</strong><br />Nithilan Rameshkumar</div>
+          <div class="chip"><strong>GitHub</strong><br />nithilan</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Scope</h2>
+        <p>I completed Category 1 and I am currently working on Category 2.</p>
+        <p>I stayed inside assigned category scope.</p>
+      </section>
+
+      <section class="section">
+        <h2>Category 1: My Decision Trail</h2>
+
+        <div class="mini-title">Why Arduino over Zephyr</div>
+        <p>
+          I did consider Zephyr RTOS, but for this task it felt like setup-heavy overhead.
+          I wanted faster iteration for sensor parsing and output checks, so Arduino was the
+          practical choice.
+        </p>
+        <p>
+          I still kept FreeRTOS as a future path if I need tighter scheduling.
+        </p>
+
+        <div class="mini-title">Why LwGPS instead of TinyGPS++ (even though TinyGPS++ was suggested)</div>
+        <p>
+          TinyGPS++ is valid. I picked LwGPS mainly because it felt lighter and easier to reason
+          about in my PlatformIO workflow for this repo. I wanted parsing behavior to stay simple
+          while debugging serial data.
+        </p>
+        <p>
+          So this was not "TinyGPS++ is bad", it was "LwGPS fits my debugging style better here".
+        </p>
+
+        <div class="mini-title">How I reduced confusion while debugging</div>
+        <ul>
+          <li>Environment 1: LwGPS-only tests</li>
+          <li>Environment 2: micro-ROS GPS publishing tests</li>
+        </ul>
+        <p>
+          This split helped me isolate failures quickly: parser side vs ROS publish side.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Category 1: Commit Log (what changed, why, and result)</h2>
+        <div class="timeline">
+          <article class="entry">
+            <span class="commit">106f3bcc6663836fdf31fae149826558d10abbcd</span>
+            <p><strong>Subject:</strong> Add initial project files including .gitignore, PlatformIO configuration, and main application code</p>
+            <p><strong>What I changed:</strong> project skeleton, initial firmware path, LwGPS options, baseline report file.</p>
+            <p><strong>Result:</strong> <span class="ok">compilable baseline achieved</span>.</p>
+          </article>
+
+          <article class="entry">
+            <span class="commit">06b6fe91554c4c4b8e5dcf3211795329d29acd6b</span>
+            <p><strong>Subject:</strong> Add micro-ROS support and Docker setup for GPS publishing</p>
+            <p><strong>What I changed:</strong> micro-ROS environment in PlatformIO, firmware updates, container setup, AI usage note.</p>
+            <p><strong>Result:</strong> <span class="ok">advanced path became reproducible</span>.</p>
+          </article>
+
+          <article class="entry">
+            <span class="commit">484d8c99233004b49f2d4d6bc5cd778558a8dd36</span>
+            <p><strong>Subject:</strong> finish Task 1 (non advanced)</p>
+            <p><strong>What I changed:</strong> refined firmware/config, added non-advanced success screenshot.</p>
+            <p><strong>Result:</strong> <span class="ok">non-advanced proof committed</span>.</p>
+          </article>
+
+          <article class="entry">
+            <span class="commit">e4dbc8e400954c812a4117d828595662f11bdadc</span>
+            <p><strong>Subject:</strong> task 1 advanced complete</p>
+            <p><strong>What I changed:</strong> final advanced config updates + advanced success screenshot.</p>
+            <p><strong>Result:</strong> <span class="ok">advanced proof committed</span>.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Category 2: Current Progress</h2>
+        <ul>
+          <li>Created ROS2 simulation package setup under mini_model_description.</li>
+          <li>Added launch + ros2_control config for spawn and controller startup.</li>
+          <li>Rover appears in Gazebo, plugin and controllers are loading.</li>
+        </ul>
+
+        <p style="margin-top: 12px;"><strong>Status now:</strong> Spawn works, controller startup works, cmd_vel behavior is still being tuned.</p>
+      </section>
+
+      <section class="section">
+        <h2>AI Usage</h2>
+        <p>
+          I used GitHub Copilot (GPT-5.3-Codex) for drafting and debugging support.
+          I used it mostly for iteration speed, launch/controller troubleshooting, and command guidance.
+        </p>
+        <p>
+          Since Copilot is integrated in-editor, I do not have a single exported transcript link,
+          but the usage is documented in the repo and reflected in this reasoning log.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Resources Used</h2>
+        <p>note to self: add later or ask permission to skip this</p>
+      </section>
+
+    </main>
+  </body>
+</html>
