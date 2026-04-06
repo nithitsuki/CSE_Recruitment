@@ -5,6 +5,17 @@
 #define USE_MICROROS 0
 #endif
 
+#ifndef PRINT_RAW_GPS
+#define PRINT_RAW_GPS 0
+#endif
+
+// micro-ROS serial transport uses the same USB serial stream as SerialMonitor.
+// Disable raw NMEA text output in this mode to avoid binary/text interleaving.
+#if USE_MICROROS
+#undef PRINT_RAW_GPS
+#define PRINT_RAW_GPS 0
+#endif
+
 #if USE_MICROROS
 #include <micro_ros_platformio.h>
 
@@ -22,6 +33,10 @@
 // The GPS module L86 GNSS defaults to 9600 baud
 #define GPS_BAUD_RATE 9600
 
+// Debug + rate controls
+#define GPS_POLL_INTERVAL_MS 50      // read serial every 50ms
+#define GPS_OUTPUT_INTERVAL_MS 1000  // print/publish once per second
+
 // Use hardware UART on pins 0/1 for GPS.
 #define gpsPort Serial1
 
@@ -29,6 +44,14 @@ static lwgps_t gps;
 
 // This is the hardware serial port on pins 0/1.
 #define SerialMonitor Serial
+
+static uint32_t last_poll_ms = 0;
+static uint32_t last_output_ms = 0;
+
+#if PRINT_RAW_GPS
+static char nmea_line[128];
+static size_t nmea_idx = 0;
+#endif
 
 #if USE_MICROROS
 rcl_publisher_t gps_publisher;
@@ -105,12 +128,49 @@ void setup()
 
 void loop()
 {
+    const uint32_t now = millis();
+
+    // Reduced polling rate
+    if (now - last_poll_ms < GPS_POLL_INTERVAL_MS)
+    {
+        return;
+    }
+    last_poll_ms = now;
+
     while (gpsPort.available())
     {
         char c = static_cast<char>(gpsPort.read());
 
+#if PRINT_RAW_GPS
+        // Collect and print raw NMEA lines
+        if (c == '$')
+        {
+            nmea_idx = 0;
+        }
+
+        if (nmea_idx < sizeof(nmea_line) - 1)
+        {
+            nmea_line[nmea_idx++] = c;
+        }
+
+        if (c == '\n' && nmea_idx > 0)
+        {
+            nmea_line[nmea_idx] = '\0';
+            SerialMonitor.print("RAW: ");
+            SerialMonitor.print(nmea_line);
+            nmea_idx = 0;
+        }
+#endif
+
         if (lwgps_process(&gps, &c, 1))
         {
+            // Throttle parsed output/publish rate
+            if (millis() - last_output_ms < GPS_OUTPUT_INTERVAL_MS)
+            {
+                continue;
+            }
+            last_output_ms = millis();
+
 #if USE_MICROROS
             if (gps.is_valid)
             {
